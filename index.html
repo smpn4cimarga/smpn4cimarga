@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP Negeri 4 Cimarga</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --biru: #0F5273;
+            --biru-terang: #1E88B8;
+            --hijau: #2E7D32;
+            --putih: #ffffff;
+            --abu-muda: #f5f8fa;
+            --abu: #e0e0e0;
+            --teks: #333333;
+            --kuning: #F9A825;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--teks);
+            background-color: var(--abu-muda);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--biru) 0%, var(--biru-terang) 100%);
+            color: var(--putih);
+            padding: 1.2rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 65px;
+            height: 65px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .judul h1 {
+            font-size: 1.4rem;
+        }
+
+        .judul p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: var(--putih);
+            padding: 0.9rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--teks);
+            font-weight: 500;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--biru);
+            border-bottom: 2px solid var(--biru);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(15, 82, 115, 0.88), rgba(30, 136, 184, 0.8)), url('https://via.placeholder.com/1200x400') center/cover;
+            color: var(--putih);
+            padding: 4.5rem 5%;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 3rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--biru);
+            font-size: 1.7rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 90px;
+            height: 4px;
+            background: var(--kuning);
+            margin: 0.6rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* === PROFIL SEKOLAH === */
+        .profil-konten {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--putih);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(15, 82, 115, 0.08);
+        }
+
+        .data-sekolah {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .data-item {
+            padding: 0.8rem;
+            background: var(--abu-muda);
+            border-radius: 8px;
+        }
+
+        .data-item strong {
+            color: var(--biru);
+        }
+
+        /* === VISI & MISI === */
+        .visi-misi {
+            background: var(--putih);
+        }
+
+        .vm-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .vm-box {
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(15, 82, 115, 0.08);
+        }
+
+        .vm-box.visi {
+            background: linear-gradient(135deg, var(--biru), var(--biru-terang));
+            color: var(--putih);
+        }
+
+        .vm-box.misi {
+            background: var(--abu-muda);
+        }
+
+        .vm-box h3 {
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+
+        .vm-box ul {
+            padding-left: 1.5rem;
+        }
+
+        .vm-box li {
+            margin-bottom: 0.6rem;
+        }
+
+        /* === KEPALA SEKOLAH === */
+        .kepsek-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--putih);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(15, 82, 115, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .kepsek-foto {
+            width: 140px;
+            height: 170px;
+            background: var(--abu);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            text-align: center;
+        }
+
+        .kepsek-info h3 {
+            color: var(--biru);
+            font-size: 1.4rem;
+        }
+
+        .kepsek-info p.jabatan {
+            color: var(--hijau);
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        /* === TENAGA PENDIDIK === */
+        .guru-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .guru-card {
+            background: var(--putih);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+
+        .guru-foto {
+            width: 80px;
+            height: 90px;
+            background: var(--abu);
+            border-radius: 50%;
+            margin: 0 auto 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        .guru-card h4 {
+            color: var(--biru);
+            font-size: 0.95rem;
+        }
+
+        .guru-card p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* === FASILITAS === */
+        .fasilitas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .fasilitas-card {
+            background: var(--putih);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+
+        .fasilitas-card h4 {
+            color: var(--biru);
+            margin: 0.5rem 0;
+        }
+
+        .fasilitas-card .ikon {
+            font-size: 2rem;
+        }
+
+        /* === BERITA & PENGUMUMAN === */
+        .berita {
+            background: var(--putih);
+        }
+
+        .berita-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .berita-card {
+            background: var(--abu-muda);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .berita-tanggal {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        .berita-card h4 {
+            color: var(--biru);
+            margin-bottom: 0.8rem;
+        }
+
+        .baca-selengkapnya {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--biru-terang);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        /* === KONTAK === */
+        .kontak-info {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--putih);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(15, 82, 115, 0.08);
+        }
+
+        .kontak-info p {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: var(--biru);
+            color: var(--putih);
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            .kepsek-box {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon">🏫</div>
+            <div class="judul">
+                <h1>SMP Negeri 4 Cimarga</h1>
+                <p>Unggul dalam Prestasi, Berlandaskan Iman dan Takwa</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigasi -->
+    <nav>
+        <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#visimisi">Visi & Misi</a></li>
+            <li><a href="#kepsek">Kepala Sekolah</a></li>
+            <li><a href="#guru">Tenaga Pendidik</a></li>
+            <li><a href="#fasilitas">Fasilitas</a></li>
+            <li><a href="#berita">Berita</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Beranda / Hero -->
+    <section class="hero" id="beranda">
+        <h2>Selamat Datang di Website<br>SMP Negeri 4 Cimarga</h2>
+        <p>Berlokasi di Kp. Narongtong, Desa Gunung Anten, Kecamatan Cimarga, Kabupaten Lebak, Banten — Mencetak Generasi Cerdas dan Berakhlak Mulia</p>
+    </section>
+
+    <!-- Profil Sekolah -->
+    <section id="profil">
+        <h2 class="section-title">Profil Sekolah</h2>
+        <div class="profil-konten">
+            <p><strong>SMP Negeri 4 Cimarga</strong> adalah salah satu satuan pendidikan jenjang SMP berstatus Negeri yang berada di wilayah Kecamatan Cimarga, Kabupaten Lebak, Provinsi Banten. Didirikan pada tanggal <strong>4 Desember 2007</strong> dengan Nomor SK Pendirian: <strong>420.3/Kep.375/Disdik/2007</strong>.</p>
+            
+            <div class="data-sekolah">
+                <div class="data-item"><strong>NPSN:</strong><br>20607871</div>
+                <div class="data-item"><strong>Status:</strong><br>Negeri</div>
+                <div class="data-item"><strong>Akreditasi:</strong><br>B</div>
+                <div class="data-item"><strong>Kepala Sekolah:</strong><br>Pepi Muhtar Habibi, S.Pd.</div>
+                <div class="data-item"><strong>Jumlah Siswa:</strong><br>± 273 Siswa</div>
+                <div class="data-item"><strong>Jumlah Guru:</strong><br>14 Guru</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi & Misi -->
+    <section class="visi-misi" id="visimisi">
+        <h2 class="section-title">Visi & Misi</h2>
+        <div class="vm-wrapper">
+            <div class="vm-box visi">
+                <h3>🎯 Visi</h3>
+                <p><em>"Terwujudnya peserta didik yang beriman dan bertakwa kepada Tuhan Yang Maha Esa, berakhlak mulia, cerdas, terampil, mandiri, dan bertanggung jawab."</em></p>
+            </div>
+            <div class="vm-box misi">
+                <h3>🚀 Misi</h3>
+                <ul>
+                    <li>Meningkatkan keimanan dan ketakwaan melalui pembiasaan ibadah sehari-hari.</li>
+                    <li>Meningkatkan kualitas pembelajaran yang aktif, kreatif, dan menyenangkan.</li>
+                    <li>Mengembangkan potensi siswa sesuai bakat dan minatnya.</li>
+                    <li>Menanamkan kedisiplinan dan karakter yang berakhlak mulia.</li>
+                    <li>Membangun lingkungan sekolah yang kondusif, bersih, dan nyaman.</li>
+                    <li>Meningkatkan kerja sama dengan orang tua dan masyarakat.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kepala Sekolah -->
+    <section id="kepsek">
+        <h2 class="section-title">Kepala Sekolah</h2>
+        <div class="kepsek-box">
+            <div class="kepsek-foto">[Foto<br>Kepala Sekolah]</div>
+            <div class="kepsek-info">
+                <h3>Bapak Pepi Muhtar Habibi, S.Pd.</h3>
+                <p class="jabatan">Kepala Sekolah SMP Negeri 4 Cimarga</p>
+                <p><em>"Selamat datang di SMP Negeri 4 Cimarga. Mari kita bekerja sama membangun generasi yang tidak hanya cerdas secara intelektual, tetapi juga unggul dalam budi pekerti. Terima kasih atas kepercayaan masyarakat kepada sekolah kami."</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tenaga Pendidik -->
+    <section style="background: var(--putih);" id="guru">
+        <h2 class="section-title">Tenaga Pendidik & Kependidikan</h2>
+        <div class="guru-grid">
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Pepi Muhtar Habibi, S.Pd.</h4><p>Kepala Sekolah</p></div>
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Endang Restu Putra</h4><p>Operator Sekolah</p></div>
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Guru Mata Pelajaran</h4><p>Bahasa Indonesia</p></div>
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Guru Mata Pelajaran</h4><p>Matematika</p></div>
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Guru Mata Pelajaran</h4><p>IPA</p></div>
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Guru Mata Pelajaran</h4><p>IPS</p></div>
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Guru Mata Pelajaran</h4><p>Bahasa Inggris</p></div>
+            <div class="guru-card"><div class="guru-foto">📷</div><h4>Guru Mata Pelajaran</h4><p>Pendidikan Agama</p></div>
+        </div>
+        <p style="text-align:center; margin-top:1.5rem; color:#666;">*Daftar lengkap 14 guru akan segera dilengkapi</p>
+    </section>
+
+    <!-- Fasilitas Sekolah -->
+    <section id="fasilitas">
+        <h2 class="section-title">Fasilitas Sekolah</h2>
+        <div class="fasilitas-grid">
+            <div class="fasilitas-card"><div class="ikon">📚</div><h4>Perpustakaan</h4><p>2 Ruang</p></div>
+            <div class="fasilitas-card"><div class="ikon">💻</div><h4>Lab Komputer</h4><p>1 Ruang</p></div>
+            <div class="fasilitas-card"><div class="ikon">🏫</div><h4>Ruang Kelas</h4><p>Tersedia</p></div>
+            <div class="fasilitas-card"><div class="ikon">🔬</div><h4>Lab IPA</h4><p>Tersedia</p></div>
+            <div class="fasilitas-card"><div class="ikon">⚽</div><h4>Lapangan Olahraga</h4><p>Tersedia</p></div>
+            <div class="fasilitas-card"><div class="ikon">🌐</div><h4>Akses Internet</h4><p>3 Mbps</p></div>
+        </div>
+    </section>
+
+    <!-- Berita & Pengumuman -->
+    <section class="berita" id="berita">
+        <h2 class="section-title">Berita & Pengumuman</h2>
+        <div class="berita-wrapper">
+            <div class="berita-card">
+                <p class="berita-tanggal">14 Oktober 2026</p>
+                <h4>Pendaftaran Peserta Didik Baru Tahun 2027</h4>
+                <p>Penerimaan siswa baru SMP Negeri 4 Cimarga akan segera dibuka. Pantau terus informasi di website ini.</p>
+                <a href="#" class="baca-selengkapnya">Baca Selengkapnya →</a>
+            </div>
+            <div class="berita-card">
+                <p class="berita-tanggal">05 Oktober 2026</p>
+                <h4>Peringatan Hari Guru Nasional 2026</h4>
+                <p>Selamat Hari Guru Nasional untuk seluruh Bapak dan Ibu Guru di SMP Negeri 4 Cimarga. Terima kasih atas dedikasi Anda.</p>
+                <a href="#" class="baca-selengkapnya">Baca Selengkapnya →</a>
+            </div>
+            <div class="berita-card">
+                <p class="berita-tanggal">02 Oktober 2026</p>
+                <h4>Jadwal Ujian Semester Ganjil</h4>
+                <p>Diberitahukan kepada seluruh siswa bahwa ujian semester ganjil akan dilaksanakan pada tanggal 23 November 2026.</p>
+                <a href="#" class="baca-selengkapnya">Baca Selengkapnya →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="kontak-info">
+            <p><strong>📍 Alamat:</strong> Kp. Narongtong, RT 8/RW 8, Desa Gunung Anten, Kecamatan Cimarga, Kabupaten Lebak, Banten — Kode Pos: 42361</p>
+            <p><strong>📞 Telepon/HP:</strong> 0878-7112-5891</p>
+            <p><strong>✉️ Email:</strong> smpn4cimarga@gmail.com</p>
+            <p><strong>⏰ Jam Operasional:</strong> Senin — Jumat, 07.00 — 15.00 WIB</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>SMP Negeri 4 Cimarga</strong> — Kp. Narongtong, Desa Gunung Anten, Kec. Cimarga, Kab. Lebak, Banten</p>
+        <p style="margin-top:0.5rem;">&copy; 2026 SMP Negeri 4 Cimarga. Semua Hak Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
